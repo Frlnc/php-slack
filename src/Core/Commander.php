@@ -197,6 +197,10 @@ class Commander {
             'token'    => true,
             'endpoint' => '/stars.list'
         ],
+        'users.info' => [
+            'token'    => true,
+            'endpoint' => '/users.info'
+        ],
         'users.list' => [
             'token'    => true,
             'endpoint' => '/users.list'
