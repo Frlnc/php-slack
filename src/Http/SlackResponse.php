@@ -5,7 +5,7 @@ class SlackResponse implements \Frlnc\Slack\Contracts\Http\Response, \JsonSerial
     /**
      * The response body.
      *
-     * @var string
+     * @var array
      */
     protected $body;
 

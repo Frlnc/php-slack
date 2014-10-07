@@ -19,6 +19,9 @@ Here is a very simple example of using this package:
 ```php
 <?php
 
+// if you are in a standalone page, uncomment the following line
+// include 'vendor/autoload.php';
+
 use Frlnc\Slack\Http\SlackResponseFactory;
 use Frlnc\Slack\Http\CurlInteractor;
 use Frlnc\Slack\Core\Commander;
@@ -33,7 +36,9 @@ $response = $commander->execute('chat.postMessage', [
     'text'    => 'Hello, world!'
 ]);
 
-if ($response['ok'])
+$responseBody = $response->getBody();
+
+if ($responseBody && responseBody['ok'])
 {
     // Command worked
 }

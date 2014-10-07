@@ -5,7 +5,7 @@ interface Response {
     /**
      * Gets the body of the response.
      *
-     * @return string
+     * @return array
      */
     public function getBody();
 
