@@ -29,6 +29,7 @@ use Frlnc\Slack\Core\Commander;
 $interactor = new CurlInteractor;
 $interactor->setResponseFactory(new SlackResponseFactory);
 
+// see doc/Toekn.md for more informations
 $commander = new Commander('xoxp-some-token-for-slack', $interactor);
 
 $response = $commander->execute('chat.postMessage', [
