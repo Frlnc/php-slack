@@ -1,5 +1,6 @@
 <?php namespace Frlnc\Slack\Core;
 
+use Frlnc\Slack\Contracts\Core\ParameterFormat;
 use InvalidArgumentException;
 use Frlnc\Slack\Contracts\Http\Interactor;
 
@@ -232,15 +233,43 @@ class Commander {
      */
     protected $interactor;
 
-    /**
-     * @param string $token
-     * @param \Frlnc\Slack\Contracts\Http\Interactor $interactor
-     */
-    public function __construct($token, Interactor $interactor)
+	/**
+	 * The formatter for parameters of the command
+	 * @var ParameterFormat
+	 */
+	protected $parameterFormat;
+
+	/**
+	 * @param string $token
+	 * @param Interactor $interactor
+	 * @param ParameterFormat $format
+	 */
+    public function __construct($token, Interactor $interactor, ParameterFormat $formatter)
     {
         $this->setToken($token);
         $this->interactor = $interactor;
+	    $this->setParameterFormatter($formatter);
     }
+
+	/**
+	 * Sets the token.
+	 *
+	 * @param string $token
+	 */
+	public function setToken($token)
+	{
+		$this->token = $token;
+	}
+
+	/**
+	 * Sets the default parameter formatter
+	 *
+	 * @param ParameterFormat $formatter
+	 */
+	public function setParameterFormatter(ParameterFormat $formatter)
+	{
+		$this->parameterFormat = $formatter;
+	}
 
     /**
      * Executes a command.
@@ -262,7 +291,7 @@ class Commander {
         if (isset($command['format']))
             foreach ($command['format'] as $format)
                 if (isset($parameters[$format]))
-                    $parameters[$format] = self::format($parameters[$format]);
+                    $parameters[$format] = $this->parameterFormat->format($parameters[$format]);
 
         $headers = [];
         if (isset($command['headers']))
@@ -275,41 +304,4 @@ class Commander {
 
         return $this->interactor->get($url, $parameters, $headers);
     }
-
-    /**
-     * Sets the token.
-     *
-     * @param string $token
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-    }
-
-    /**
-     * Formats a string for Slack.
-     *
-     * @param  string $string
-     * @return string
-     */
-    public static function format($string)
-    {
-        // Dear reader, please don't judge me on this code, the correct way to do this would be with a look behind
-        // However, I just want it to work, and I can't be bothered at this time of night fighting to get the regex
-        // working in PHP...
-        $string = str_replace("\\&", "||amp||", $string);
-        $string = str_replace("\\<", "||lt||", $string);
-        $string = str_replace("\\>", "||gt||", $string);
-
-        $string = str_replace('&', '&amp;', $string);
-        $string = str_replace('<', '&lt;', $string);
-        $string = str_replace('>', '&gt;', $string);
-
-        $string = str_replace("||amp||", "&", $string);
-        $string = str_replace("||lt||", "<", $string);
-        $string = str_replace("||gt||", ">", $string);
-
-        return $string;
-    }
-
 }
