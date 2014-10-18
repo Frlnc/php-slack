@@ -294,9 +294,20 @@ class Commander {
      */
     public static function format($string)
     {
+        // Dear reader, please don't judge me on this code, the correct way to do this would be with a look behind
+        // However, I just want it to work, and I can't be bothered at this time of night fighting to get the regex
+        // working in PHP...
+        $string = str_replace("\\&", "||amp||", $string);
+        $string = str_replace("\\<", "||lt||", $string);
+        $string = str_replace("\\>", "||gt||", $string);
+
         $string = str_replace('&', '&amp;', $string);
         $string = str_replace('<', '&lt;', $string);
         $string = str_replace('>', '&gt;', $string);
+
+        $string = str_replace("||amp||", "&", $string);
+        $string = str_replace("||lt||", "<", $string);
+        $string = str_replace("||gt||", ">", $string);
 
         return $string;
     }
