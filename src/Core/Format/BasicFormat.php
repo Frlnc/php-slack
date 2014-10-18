@@ -8,9 +8,19 @@ class Basic implements ParameterFormat {
 
 	public function format($string)
 	{
-		$string = str_replace('&', '&amp;', $string);
-		$string = str_replace('<', '&lt;', $string);
-		$string = str_replace('>', '&gt;', $string);
+		$src = array(
+			'\\&'       => '||amp||',
+			'\\<'       => '||lt||',
+			'\\>'       => '||gt||',
+			'&'         => '&amp;',
+			'<'         => '&lt;',
+			'>'         => '&gt;',
+			'||amp||'   => '&',
+			'||lt||'    => '<',
+			'||gt||'    => '>'
+		);
+
+		$string = str_replace(array_keys($src), array_values($src), $string);
 
 		return $string;
 	}
