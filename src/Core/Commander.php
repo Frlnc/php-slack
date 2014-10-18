@@ -238,7 +238,7 @@ class Commander {
      */
     public function __construct($token, Interactor $interactor)
     {
-        $this->token = $token;
+        $this->setToken($token);
         $this->interactor = $interactor;
     }
 
