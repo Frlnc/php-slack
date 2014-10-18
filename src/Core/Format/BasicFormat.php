@@ -4,7 +4,7 @@ namespace Frlnc\Slack\Core\Format;
 
 use Frlnc\Slack\Contracts\Core\ParameterFormat;
 
-class Basic implements ParameterFormat {
+class BasicFormat implements ParameterFormat {
 
 	public function format($string)
 	{

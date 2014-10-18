@@ -281,27 +281,88 @@ class Commander {
     public function execute($command, array $parameters = [])
     {
         if (!isset(self::$commands[$command]))
-            throw new InvalidArgumentException("The command '{$command}' is not currently supported");
+        {
+	        throw new InvalidArgumentException("The command '{$command}' is not currently supported");
+        }
 
         $command = self::$commands[$command];
 
-        if ($command['token'])
-            $parameters = array_merge($parameters, ['token' => $this->token]);
-
-        if (isset($command['format']))
-            foreach ($command['format'] as $format)
-                if (isset($parameters[$format]))
-                    $parameters[$format] = $this->parameterFormat->format($parameters[$format]);
+	    $this->injectToken($command, $parameters);
+	    $this->formatParameters($command, $parameters);
 
         $headers = [];
         if (isset($command['headers']))
-            $headers = $command['headers'];
+        {
+	        $headers = $command['headers'];
+        }
 
-        $url = self::$baseUrl . $command['endpoint'];
-
-        if (isset($command['post']) && $command['post'])
-            return $this->interactor->post($url, [], $parameters, $headers);
-
-        return $this->interactor->get($url, $parameters, $headers);
+        return $this->send($command, $parameters, $headers);
     }
+
+	/**
+	 * Inject the token in the parameters of the command if required
+	 * @param array $command
+	 * @param array $parameters
+	 * @return array $parameters
+	 */
+	protected function injectToken(array $command, array &$parameters)
+	{
+		if ($command['token'])
+		{
+			$parameters = array_merge($parameters, ['token' => $this->token]);
+		}
+
+		return $parameters;
+	}
+
+	/**
+	 * Format some parameters if it's required
+	 * @param array $command
+	 * @param array $parameters
+	 * @return array $parameters
+	 */
+	protected function formatParameters(array $command, array &$parameters)
+	{
+		if (isset($command['format']))
+		{
+			foreach ($command['format'] as $format)
+			{
+				if (isset($parameters[$format]))
+				{
+					$parameters[$format] = $this->parameterFormat->format($parameters[$format]);
+				}
+			}
+		}
+
+		return $parameters;
+	}
+
+	/**
+	 * Get the url relative to this command
+	 * @param array $command
+	 * @return string
+	 */
+	protected function buildUrl(array $command)
+	{
+		return self::$baseUrl . $command['endpoint'];
+	}
+
+	/**
+	 * Send the command and get the response
+	 * @param array $command
+	 * @param array $parameters
+	 * @param array $headers
+	 * @return \Frlnc\Slack\Contracts\Http\Response
+	 */
+	protected function send(array $command, array $parameters, array $headers)
+	{
+		$url = $this->buildUrl($command);
+
+		if (isset($command['post']) && $command['post'])
+		{
+			return $this->interactor->post($url, [], $parameters, $headers);
+		}
+
+		return $this->interactor->get($url, $parameters, $headers);
+	}
 }
