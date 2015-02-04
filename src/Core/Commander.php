@@ -26,6 +26,14 @@ class Commander {
             'endpoint' => '/auth.test',
             'token'    => true
         ],
+        'channels.archive' => [
+            'token'    => true,
+            'endpoint' => '/channels.archive'
+        ],
+        'channels.create' => [
+            'token'    => true,
+            'endpoint' => '/channels.create'
+        ],
         'channels.history' => [
             'token'    => true,
             'endpoint' => '/channels.history'
@@ -58,6 +66,10 @@ class Commander {
             'token'    => true,
             'endpoint' => '/channels.mark'
         ],
+        'channels.rename' => [
+            'token'    => true,
+            'endpoint' => '/channels.rename'
+        ],
         'channels.setPurpose' => [
             'token'    => true,
             'endpoint' => '/channels.setPurpose',
@@ -71,6 +83,10 @@ class Commander {
             'format'   => [
                 'topic'
             ]
+        ],
+        'channels.unarchive' => [
+            'token'    => true,
+            'endpoint' => '/channels.unarchive'
         ],
         'chat.delete' => [
             'token'    => true,
@@ -99,6 +115,14 @@ class Commander {
             'token'    => true,
             'endpoint' => '/files.info'
         ],
+        'files.delete' => [
+            'token'    => true,
+            'endpoint' => '/files.delete'
+        ],
+        'files.info' => [
+            'token'    => true,
+            'endpoint' => '/files.info'
+        ],
         'files.list' => [
             'token'    => true,
             'endpoint' => '/files.list'
@@ -115,6 +139,14 @@ class Commander {
                 'title',
                 'initial_comment'
             ]
+        ],
+        'groups.archive' => [
+            'token'    => true,
+            'endpoint' => '/groups.archive'
+        ],
+        'groups.close' => [
+            'token'    => true,
+            'endpoint' => '/groups.close'
         ],
         'groups.create' => [
             'token'    => true,
@@ -151,6 +183,10 @@ class Commander {
             'token'    => true,
             'endpoint' => '/groups.mark'
         ],
+        'groups.open' => [
+            'token'    => true,
+            'endpoint' => '/groups.open'
+        ],
         'groups.setPurpose' => [
             'token'    => true,
             'endpoint' => '/groups.setPurpose',
@@ -165,6 +201,14 @@ class Commander {
                 'topic'
             ]
         ],
+        'groups.unarchive' => [
+            'token'    => true,
+            'endpoint' => '/groups.unarchive'
+        ],
+        'im.close' => [
+            'token'    => true,
+            'endpoint' => '/im.close'
+        ],
         'im.history' => [
             'token'    => true,
             'endpoint' => '/im.history'
@@ -177,9 +221,17 @@ class Commander {
             'token'    => true,
             'endpoint' => '/im.mark'
         ],
+        'im.open' => [
+            'token'    => true,
+            'endpoint' => '/im.open'
+        ],
         'oauth.access' => [
             'token'    => false,
             'endpoint' => '/oauth.access'
+        ],
+        'rtm.start' => [
+            'token'    => true,
+            'endpoint' => '/rtm.start'
         ],
         'search.all' => [
             'token'    => true,
@@ -197,6 +249,10 @@ class Commander {
             'token'    => true,
             'endpoint' => '/stars.list'
         ],
+        'users.getPresence' => [
+            'token'    => true,
+            'endpoint' => '/users.getPresence'
+        ],
         'users.info' => [
             'token'    => true,
             'endpoint' => '/users.info'
@@ -208,6 +264,10 @@ class Commander {
         'users.setActive' => [
             'token'    => true,
             'endpoint' => '/users.setActive'
+        ],
+        'users.setPresence' => [
+            'token'    => true,
+            'endpoint' => '/users.setPresence'
         ]
     ];
 
