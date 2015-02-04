@@ -1,5 +1,6 @@
 <?php namespace Frlnc\Slack\Core;
 
+use Frlnc\Slack\Contracts\Core\ParameterFormat;
 use InvalidArgumentException;
 use Frlnc\Slack\Contracts\Http\Interactor;
 
@@ -292,15 +293,43 @@ class Commander {
      */
     protected $interactor;
 
-    /**
-     * @param string $token
-     * @param \Frlnc\Slack\Contracts\Http\Interactor $interactor
-     */
-    public function __construct($token, Interactor $interactor)
+	/**
+	 * The formatter for parameters of the command
+	 * @var ParameterFormat
+	 */
+	protected $parameterFormat;
+
+	/**
+	 * @param string $token
+	 * @param Interactor $interactor
+	 * @param ParameterFormat $format
+	 */
+    public function __construct($token, Interactor $interactor, ParameterFormat $formatter)
     {
-        $this->token = $token;
+        $this->setToken($token);
         $this->interactor = $interactor;
+	    $this->setParameterFormatter($formatter);
     }
+
+	/**
+	 * Sets the token.
+	 *
+	 * @param string $token
+	 */
+	public function setToken($token)
+	{
+		$this->token = $token;
+	}
+
+	/**
+	 * Sets the default parameter formatter
+	 *
+	 * @param ParameterFormat $formatter
+	 */
+	public function setParameterFormatter(ParameterFormat $formatter)
+	{
+		$this->parameterFormat = $formatter;
+	}
 
     /**
      * Executes a command.
@@ -312,53 +341,88 @@ class Commander {
     public function execute($command, array $parameters = [])
     {
         if (!isset(self::$commands[$command]))
-            throw new InvalidArgumentException("The command '{$command}' is not currently supported");
+        {
+	        throw new InvalidArgumentException("The command '{$command}' is not currently supported");
+        }
 
         $command = self::$commands[$command];
 
-        if ($command['token'])
-            $parameters = array_merge($parameters, ['token' => $this->token]);
-
-        if (isset($command['format']))
-            foreach ($command['format'] as $format)
-                if (isset($parameters[$format]))
-                    $parameters[$format] = self::format($parameters[$format]);
+	    $this->injectToken($command, $parameters);
+	    $this->formatParameters($command, $parameters);
 
         $headers = [];
         if (isset($command['headers']))
-            $headers = $command['headers'];
+        {
+	        $headers = $command['headers'];
+        }
 
-        $url = self::$baseUrl . $command['endpoint'];
-
-        if (isset($command['post']) && $command['post'])
-            return $this->interactor->post($url, [], $parameters, $headers);
-
-        return $this->interactor->get($url, $parameters, $headers);
+        return $this->send($command, $parameters, $headers);
     }
 
-    /**
-     * Sets the token.
-     *
-     * @param string $token
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-    }
+	/**
+	 * Inject the token in the parameters of the command if required
+	 * @param array $command
+	 * @param array $parameters
+	 * @return array $parameters
+	 */
+	protected function injectToken(array $command, array &$parameters)
+	{
+		if ($command['token'])
+		{
+			$parameters = array_merge($parameters, ['token' => $this->token]);
+		}
 
-    /**
-     * Formats a string for Slack.
-     *
-     * @param  string $string
-     * @return string
-     */
-    public static function format($string)
-    {
-        $string = str_replace('&', '&amp;', $string);
-        $string = str_replace('<', '&lt;', $string);
-        $string = str_replace('>', '&gt;', $string);
+		return $parameters;
+	}
 
-        return $string;
-    }
+	/**
+	 * Format some parameters if it's required
+	 * @param array $command
+	 * @param array $parameters
+	 * @return array $parameters
+	 */
+	protected function formatParameters(array $command, array &$parameters)
+	{
+		if (isset($command['format']))
+		{
+			foreach ($command['format'] as $format)
+			{
+				if (isset($parameters[$format]))
+				{
+					$parameters[$format] = $this->parameterFormat->format($parameters[$format]);
+				}
+			}
+		}
 
+		return $parameters;
+	}
+
+	/**
+	 * Get the url relative to this command
+	 * @param array $command
+	 * @return string
+	 */
+	protected function buildUrl(array $command)
+	{
+		return self::$baseUrl . $command['endpoint'];
+	}
+
+	/**
+	 * Send the command and get the response
+	 * @param array $command
+	 * @param array $parameters
+	 * @param array $headers
+	 * @return \Frlnc\Slack\Contracts\Http\Response
+	 */
+	protected function send(array $command, array $parameters, array $headers)
+	{
+		$url = $this->buildUrl($command);
+
+		if (isset($command['post']) && $command['post'])
+		{
+			return $this->interactor->post($url, [], $parameters, $headers);
+		}
+
+		return $this->interactor->get($url, $parameters, $headers);
+	}
 }
