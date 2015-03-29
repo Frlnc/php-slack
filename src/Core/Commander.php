@@ -268,6 +268,10 @@ class Commander {
         'users.setPresence' => [
             'token'    => true,
             'endpoint' => '/users.setPresence'
+        ],
+        'users.admin.invite' => [
+            'token'    => true,
+            'endpoint' => '/users.admin.invite'
         ]
     ];
 
