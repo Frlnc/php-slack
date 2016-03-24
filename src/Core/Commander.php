@@ -229,6 +229,10 @@ class Commander {
             'token'    => false,
             'endpoint' => '/oauth.access'
         ],
+        'pins.list' => [
+            'token'    => true,
+            'endpoint' => '/pins.list'
+        ],
         'rtm.start' => [
             'token'    => true,
             'endpoint' => '/rtm.start'
