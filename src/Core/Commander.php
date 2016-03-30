@@ -233,6 +233,10 @@ class Commander {
             'token'    => true,
             'endpoint' => '/pins.list'
         ],
+        'reactions.list' => [
+            'token'    => true,
+            'endpoint' => '/reactions.list'
+        ],
         'rtm.start' => [
             'token'    => true,
             'endpoint' => '/rtm.start'
