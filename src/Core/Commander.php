@@ -198,6 +198,10 @@ class Commander {
             'token'    => true,
             'endpoint' => '/groups.history'
         ],
+        'groups.info' => [
+            'token'    => true,
+            'endpoint' => '/groups.info'
+        ],
         'groups.invite' => [
             'token'    => true,
             'endpoint' => '/groups.invite'
@@ -221,6 +225,10 @@ class Commander {
         'groups.open' => [
             'token'    => true,
             'endpoint' => '/groups.open'
+        ],
+        'groups.rename' => [
+            'token'    => true,
+            'endpoint' => '/groups.rename'
         ],
         'groups.setPurpose' => [
             'token'    => true,
