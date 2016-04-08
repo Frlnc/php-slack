@@ -130,6 +130,17 @@ class Commander {
         'emoji.list' => [
             'token'    => true,
             'endpoint' => '/emoji.list'
+        'files.comments.add' => [
+            'token'    => true,
+            'endpoint' => '/files.comments.add'
+        ],
+        'files.comments.delete' => [
+            'token'    => true,
+            'endpoint' => '/files.comments.delete'
+        ],
+        'files.comments.edit' => [
+            'token'    => true,
+            'endpoint' => '/files.comments.edit'
         ],
         'files.delete' => [
             'token'    => true,
@@ -142,6 +153,14 @@ class Commander {
         'files.list' => [
             'token'    => true,
             'endpoint' => '/files.list'
+        ],
+        'files.revokePublicURL' => [
+            'token'    => true,
+            'endpoint' => '/files.revokePublicURL'
+        ],
+        'files.sharedPublcURL' => [
+            'token'    => true,
+            'endpoint' => '/files.sharedPublcURL'
         ],
         'files.upload' => [
             'token'    => true,
