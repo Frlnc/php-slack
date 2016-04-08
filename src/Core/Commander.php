@@ -304,9 +304,21 @@ class Commander {
             'token'    => true,
             'endpoint' => '/pins.remove'
         ],
+        'reactions.add' => [
+            'token'    => true,
+            'endpoint' => '/reactions.add'
+        ],
+        'reactions.get' => [
+            'token'    => true,
+            'endpoint' => '/reactions.get'
+        ],
         'reactions.list' => [
             'token'    => true,
             'endpoint' => '/reactions.list'
+        ],
+        'reactions.remove' => [
+            'token'    => true,
+            'endpoint' => '/reactions.remove'
         ],
         'rtm.start' => [
             'token'    => true,
