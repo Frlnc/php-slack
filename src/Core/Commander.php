@@ -348,6 +348,18 @@ class Commander {
             'token'    => true,
             'endpoint' => '/stars.remove'
         ],
+        'team.accessLogs' => [
+            'token'    => true,
+            'endpoint' => '/team.accessLogs'
+        ],
+        'team.info' => [
+            'token'    => true,
+            'endpoint' => '/team.info'
+        ],
+        'team.integrationLogs' => [
+            'token'    => true,
+            'endpoint' => '/team.integrationLogs'
+        ],
         'users.getPresence' => [
             'token'    => true,
             'endpoint' => '/users.getPresence'
