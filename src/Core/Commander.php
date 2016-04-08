@@ -107,6 +107,26 @@ class Commander {
                 'text'
             ]
         ],
+        'dnd.endDnd' => [
+            'token'    => true,
+            'endpoint' => '/dnd.endDnd'
+        ],
+        'dnd.endSnooze' => [
+            'token'    => true,
+            'endpoint' => '/dnd.endSnooze'
+        ],
+        'dnd.info' => [
+            'token'    => true,
+            'endpoint' => '/dnd.info'
+        ],
+        'dnd.setSnooze' => [
+            'token'    => true,
+            'endpoint' => '/dnd.setSnooze'
+        ],
+        'dnd.teamInfo' => [
+            'token'    => true,
+            'endpoint' => '/dnd.teamInfo'
+        ],
         'emoji.list' => [
             'token'    => true,
             'endpoint' => '/emoji.list'
