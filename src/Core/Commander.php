@@ -336,9 +336,17 @@ class Commander {
             'token'    => true,
             'endpoint' => '/search.messages'
         ],
+        'stars.add' => [
+            'token'    => true,
+            'endpoint' => '/stars.add'
+        ],
         'stars.list' => [
             'token'    => true,
             'endpoint' => '/stars.list'
+        ],
+        'stars.remove' => [
+            'token'    => true,
+            'endpoint' => '/stars.remove'
         ],
         'users.getPresence' => [
             'token'    => true,
