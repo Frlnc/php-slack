@@ -268,6 +268,26 @@ class Commander {
             'token'    => true,
             'endpoint' => '/im.open'
         ],
+        'mpim.close' => [
+            'token'    => true,
+            'endpoint' => '/mpim.close'
+        ],
+        'mpmim.history' => [
+            'token'    => true,
+            'endpoint' => '/mpmim.history'
+        ],
+        'mpim.list' => [
+            'token'    => true,
+            'endpoint' => '/mpim.list'
+        ],
+        'mpim.mark' => [
+            'token'    => true,
+            'endpoint' => '/mpim.mark'
+        ],
+        'mpim.open' => [
+            'token'    => true,
+            'endpoint' => '/mpim.open'
+        ],
         'oauth.access' => [
             'token'    => false,
             'endpoint' => '/oauth.access'
