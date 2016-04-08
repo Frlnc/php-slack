@@ -111,10 +111,6 @@ class Commander {
             'token'    => true,
             'endpoint' => '/emoji.list'
         ],
-        'files.info' => [
-            'token'    => true,
-            'endpoint' => '/files.info'
-        ],
         'files.delete' => [
             'token'    => true,
             'endpoint' => '/files.delete'
