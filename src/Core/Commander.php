@@ -360,6 +360,34 @@ class Commander {
             'token'    => true,
             'endpoint' => '/team.integrationLogs'
         ],
+        'usergroups.create' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.create'
+        ],
+        'usergroups.disable' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.disable'
+        ],
+        'usergroups.enable' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.enable'
+        ],
+        'usergroups.list' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.list'
+        ],
+        'usergroups.update' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.update'
+        ],
+        'usergroups.users.list' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.users.list'
+        ],
+        'usergroups.users.update' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.users.update'
+        ],
         'users.getPresence' => [
             'token'    => true,
             'endpoint' => '/users.getPresence'
