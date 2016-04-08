@@ -292,9 +292,17 @@ class Commander {
             'token'    => false,
             'endpoint' => '/oauth.access'
         ],
+        'pins.add' => [
+            'token'    => true,
+            'endpoint' => '/pins.add'
+        ],
         'pins.list' => [
             'token'    => true,
             'endpoint' => '/pins.list'
+        ],
+        'pins.remove' => [
+            'token'    => true,
+            'endpoint' => '/pins.remove'
         ],
         'reactions.list' => [
             'token'    => true,
