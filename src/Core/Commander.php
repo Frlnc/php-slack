@@ -130,6 +130,7 @@ class Commander {
         'emoji.list' => [
             'token'    => true,
             'endpoint' => '/emoji.list'
+        ],
         'files.comments.add' => [
             'token'    => true,
             'endpoint' => '/files.comments.add'
