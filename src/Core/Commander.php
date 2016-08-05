@@ -437,6 +437,25 @@ class Commander {
     protected $interactor;
 
     /**
+     * @var int timestamp
+     */
+    protected $lastApiCallTime = 0;
+
+    /**
+     * Possible API calls per second
+     *
+     * @var int
+     */
+    protected $rateLimit = 1;
+
+    /**
+     * True if want to ignore slack limitations
+     *
+     * @var bool
+     */
+    protected $ignoreLimit = false;
+
+    /**
      * @param string $token
      * @param \Frlnc\Slack\Contracts\Http\Interactor $interactor
      */
@@ -477,6 +496,7 @@ class Commander {
         if (isset($command['post']) && $command['post'])
             return $this->interactor->post($url, [], $parameters, $headers);
 
+        $this->respectRateLimit();
         return $this->interactor->get($url, $parameters, $headers);
     }
 
@@ -488,6 +508,16 @@ class Commander {
     public function setToken($token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * Sets the ignore
+     *
+     * @param bool $ignore
+     */
+    public function ignoreLimit($ignore = true)
+    {
+        $this->ignoreLimit = (boolean) $ignore;
     }
 
     /**
@@ -505,4 +535,16 @@ class Commander {
         return $string;
     }
 
+    /**
+     * Sleep if needed, to respect Slack Api Rate Limit
+     *
+     * @see https://api.slack.com/docs/rate-limits
+     */
+    protected function respectRateLimit()
+    {
+        if ($this->ignoreLimit) return;
+
+        if ((time() - $this->lastApiCallTime) < 1) usleep(1000000 / $this->rateLimit);
+        $this->lastApiCallTime = time();
+    }
 }
