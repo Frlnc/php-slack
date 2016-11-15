@@ -26,6 +26,14 @@ class Commander {
             'endpoint' => '/auth.test',
             'token'    => true
         ],
+        'channels.archive' => [
+            'token'    => true,
+            'endpoint' => '/channels.archive'
+        ],
+        'channels.create' => [
+            'token'    => true,
+            'endpoint' => '/channels.create'
+        ],
         'channels.history' => [
             'token'    => true,
             'endpoint' => '/channels.history'
@@ -58,6 +66,10 @@ class Commander {
             'token'    => true,
             'endpoint' => '/channels.mark'
         ],
+        'channels.rename' => [
+            'token'    => true,
+            'endpoint' => '/channels.rename'
+        ],
         'channels.setPurpose' => [
             'token'    => true,
             'endpoint' => '/channels.setPurpose',
@@ -71,6 +83,10 @@ class Commander {
             'format'   => [
                 'topic'
             ]
+        ],
+        'channels.unarchive' => [
+            'token'    => true,
+            'endpoint' => '/channels.unarchive'
         ],
         'chat.delete' => [
             'token'    => true,
@@ -91,9 +107,45 @@ class Commander {
                 'text'
             ]
         ],
+        'dnd.endDnd' => [
+            'token'    => true,
+            'endpoint' => '/dnd.endDnd'
+        ],
+        'dnd.endSnooze' => [
+            'token'    => true,
+            'endpoint' => '/dnd.endSnooze'
+        ],
+        'dnd.info' => [
+            'token'    => true,
+            'endpoint' => '/dnd.info'
+        ],
+        'dnd.setSnooze' => [
+            'token'    => true,
+            'endpoint' => '/dnd.setSnooze'
+        ],
+        'dnd.teamInfo' => [
+            'token'    => true,
+            'endpoint' => '/dnd.teamInfo'
+        ],
         'emoji.list' => [
             'token'    => true,
             'endpoint' => '/emoji.list'
+        ],
+        'files.comments.add' => [
+            'token'    => true,
+            'endpoint' => '/files.comments.add'
+        ],
+        'files.comments.delete' => [
+            'token'    => true,
+            'endpoint' => '/files.comments.delete'
+        ],
+        'files.comments.edit' => [
+            'token'    => true,
+            'endpoint' => '/files.comments.edit'
+        ],
+        'files.delete' => [
+            'token'    => true,
+            'endpoint' => '/files.delete'
         ],
         'files.info' => [
             'token'    => true,
@@ -102,6 +154,14 @@ class Commander {
         'files.list' => [
             'token'    => true,
             'endpoint' => '/files.list'
+        ],
+        'files.revokePublicURL' => [
+            'token'    => true,
+            'endpoint' => '/files.revokePublicURL'
+        ],
+        'files.sharedPublcURL' => [
+            'token'    => true,
+            'endpoint' => '/files.sharedPublcURL'
         ],
         'files.upload' => [
             'token'    => true,
@@ -115,6 +175,14 @@ class Commander {
                 'title',
                 'initial_comment'
             ]
+        ],
+        'groups.archive' => [
+            'token'    => true,
+            'endpoint' => '/groups.archive'
+        ],
+        'groups.close' => [
+            'token'    => true,
+            'endpoint' => '/groups.close'
         ],
         'groups.create' => [
             'token'    => true,
@@ -130,6 +198,10 @@ class Commander {
         'groups.history' => [
             'token'    => true,
             'endpoint' => '/groups.history'
+        ],
+        'groups.info' => [
+            'token'    => true,
+            'endpoint' => '/groups.info'
         ],
         'groups.invite' => [
             'token'    => true,
@@ -151,6 +223,14 @@ class Commander {
             'token'    => true,
             'endpoint' => '/groups.mark'
         ],
+        'groups.open' => [
+            'token'    => true,
+            'endpoint' => '/groups.open'
+        ],
+        'groups.rename' => [
+            'token'    => true,
+            'endpoint' => '/groups.rename'
+        ],
         'groups.setPurpose' => [
             'token'    => true,
             'endpoint' => '/groups.setPurpose',
@@ -165,6 +245,14 @@ class Commander {
                 'topic'
             ]
         ],
+        'groups.unarchive' => [
+            'token'    => true,
+            'endpoint' => '/groups.unarchive'
+        ],
+        'im.close' => [
+            'token'    => true,
+            'endpoint' => '/im.close'
+        ],
         'im.history' => [
             'token'    => true,
             'endpoint' => '/im.history'
@@ -177,9 +265,65 @@ class Commander {
             'token'    => true,
             'endpoint' => '/im.mark'
         ],
+        'im.open' => [
+            'token'    => true,
+            'endpoint' => '/im.open'
+        ],
+        'mpim.close' => [
+            'token'    => true,
+            'endpoint' => '/mpim.close'
+        ],
+        'mpmim.history' => [
+            'token'    => true,
+            'endpoint' => '/mpmim.history'
+        ],
+        'mpim.list' => [
+            'token'    => true,
+            'endpoint' => '/mpim.list'
+        ],
+        'mpim.mark' => [
+            'token'    => true,
+            'endpoint' => '/mpim.mark'
+        ],
+        'mpim.open' => [
+            'token'    => true,
+            'endpoint' => '/mpim.open'
+        ],
         'oauth.access' => [
             'token'    => false,
             'endpoint' => '/oauth.access'
+        ],
+        'pins.add' => [
+            'token'    => true,
+            'endpoint' => '/pins.add'
+        ],
+        'pins.list' => [
+            'token'    => true,
+            'endpoint' => '/pins.list'
+        ],
+        'pins.remove' => [
+            'token'    => true,
+            'endpoint' => '/pins.remove'
+        ],
+        'reactions.add' => [
+            'token'    => true,
+            'endpoint' => '/reactions.add'
+        ],
+        'reactions.get' => [
+            'token'    => true,
+            'endpoint' => '/reactions.get'
+        ],
+        'reactions.list' => [
+            'token'    => true,
+            'endpoint' => '/reactions.list'
+        ],
+        'reactions.remove' => [
+            'token'    => true,
+            'endpoint' => '/reactions.remove'
+        ],
+        'rtm.start' => [
+            'token'    => true,
+            'endpoint' => '/rtm.start'
         ],
         'search.all' => [
             'token'    => true,
@@ -193,9 +337,61 @@ class Commander {
             'token'    => true,
             'endpoint' => '/search.messages'
         ],
+        'stars.add' => [
+            'token'    => true,
+            'endpoint' => '/stars.add'
+        ],
         'stars.list' => [
             'token'    => true,
             'endpoint' => '/stars.list'
+        ],
+        'stars.remove' => [
+            'token'    => true,
+            'endpoint' => '/stars.remove'
+        ],
+        'team.accessLogs' => [
+            'token'    => true,
+            'endpoint' => '/team.accessLogs'
+        ],
+        'team.info' => [
+            'token'    => true,
+            'endpoint' => '/team.info'
+        ],
+        'team.integrationLogs' => [
+            'token'    => true,
+            'endpoint' => '/team.integrationLogs'
+        ],
+        'usergroups.create' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.create'
+        ],
+        'usergroups.disable' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.disable'
+        ],
+        'usergroups.enable' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.enable'
+        ],
+        'usergroups.list' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.list'
+        ],
+        'usergroups.update' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.update'
+        ],
+        'usergroups.users.list' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.users.list'
+        ],
+        'usergroups.users.update' => [
+            'token'    => true,
+            'endpoint' => '/usergroups.users.update'
+        ],
+        'users.getPresence' => [
+            'token'    => true,
+            'endpoint' => '/users.getPresence'
         ],
         'users.info' => [
             'token'    => true,
@@ -208,6 +404,14 @@ class Commander {
         'users.setActive' => [
             'token'    => true,
             'endpoint' => '/users.setActive'
+        ],
+        'users.setPresence' => [
+            'token'    => true,
+            'endpoint' => '/users.setPresence'
+        ],
+        'users.admin.invite' => [
+            'token'    => true,
+            'endpoint' => '/users.admin.invite'
         ]
     ];
 
