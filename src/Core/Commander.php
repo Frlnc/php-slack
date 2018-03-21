@@ -273,9 +273,9 @@ class Commander {
             'token'    => true,
             'endpoint' => '/mpim.close'
         ],
-        'mpmim.history' => [
+        'mpim.history' => [
             'token'    => true,
-            'endpoint' => '/mpmim.history'
+            'endpoint' => '/mpim.history'
         ],
         'mpim.list' => [
             'token'    => true,
