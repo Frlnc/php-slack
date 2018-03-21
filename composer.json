@@ -1,5 +1,5 @@
 {
-    "name": "frlnc/php-slack",
+    "name": "fabriciojso/php-slack",
     "description": "A lightweight PHP implementation of Slack's API.",
     "keywords": ["slack"],
     "license": "MIT",
