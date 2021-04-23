@@ -94,6 +94,7 @@ class Commander {
         ],
         'chat.postMessage' => [
             'token'    => true,
+            'post'     => true, 
             'endpoint' => '/chat.postMessage',
             'format'   => [
                 'text',
@@ -474,6 +475,8 @@ class Commander {
 
         $url = self::$baseUrl . $command['endpoint'];
 
+        $headers = array_merge($headers, ['Authorization' => 'Bearer ' . $this->token]);
+        
         if (isset($command['post']) && $command['post'])
             return $this->interactor->post($url, [], $parameters, $headers);
 
